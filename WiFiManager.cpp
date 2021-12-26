@@ -8,6 +8,21 @@ void WiFiManager::connecting() {
     }
 }
 
+void WiFiManager::reconnect() {
+    if(millis() - lastMillisConnection < intervalToConnect) 
+        return;
+
+    Serial.print("\nReconnecting");
+    WiFi.reconnect();
+    lastMillisConnection = millis();
+
+    while(!WiFiManager::isConnected())
+        WiFiManager::connecting();
+
+    Serial.print("\nConnected. IP: ");
+    Serial.println(WiFi.localIP());
+}
+
 // Public methods
 WiFiManager::WiFiManager() {
     lastMillisConnection = 0;
@@ -39,21 +54,10 @@ void WiFiManager::connectStation(char *ssid, char *password, std::function<void 
     fn();
 }
 
-void WiFiManager::reconnect() {
-    if(millis() - lastMillisConnection < intervalToConnect) 
-        return;
-
-    Serial.print("\nReconnecting");
-    WiFi.reconnect();
-    lastMillisConnection = millis();
-
-    while(!WiFiManager::isConnected())
-        WiFiManager::connecting();
-
-    Serial.print("\nConnected. IP: ");
-    Serial.println(WiFi.localIP());
-}
-
 bool WiFiManager::isConnected() {
     return WiFi.status() == WL_CONNECTED;
+}
+
+void WiFiManager::refreshConnection() {
+    if(!WiFiManager::isConnected()) WiFiManager::reconnect();
 }

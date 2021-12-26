@@ -8,10 +8,11 @@ class WiFiManager {
         unsigned long lastMillisConnecting;
         unsigned long intervalToConnect = 20000;
         void connecting();
+        void reconnect();
     public:
         WiFiManager();
         bool isConnected();
         void setupIp(IPAddress ip, IPAddress gateway, IPAddress subnet);
         void connectStation(char *ssid, char *password, std::function<void ()> fn = [](){});
-        void reconnect();
+        void refreshConnection();
 };
