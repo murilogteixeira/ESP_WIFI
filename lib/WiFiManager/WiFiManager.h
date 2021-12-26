@@ -12,6 +12,6 @@ class WiFiManager {
         WiFiManager();
         bool isConnected();
         void setupIp(IPAddress ip, IPAddress gateway, IPAddress subnet);
-        void connectStation(char *ssid, char *password);
+        void connectStation(char *ssid, char *password, std::function<void ()> fn);
         void reconnect();
 };

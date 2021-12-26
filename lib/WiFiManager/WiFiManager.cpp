@@ -19,7 +19,7 @@ void WiFiManager::setupIp(IPAddress ip, IPAddress gateway, IPAddress subnet) {
         Serial.println("\nCould not configure static IP.");
 }
 
-void WiFiManager::connectStation(char *ssid, char *password) {
+void WiFiManager::connectStation(char *ssid, char *password, std::function<void ()> fn){
     Serial.printf("\nConnecting to %s", ssid);
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
@@ -29,13 +29,14 @@ void WiFiManager::connectStation(char *ssid, char *password) {
         WiFiManager::connecting();
         if(millis() - lastMillisConnection >= intervalToConnect) {
             Serial.println("\nConnection failed. Reconnecting...");
-            WiFiManager::connectStation(ssid, password);
+            WiFiManager::connectStation(ssid, password, fn);
             return;
         }
     }
 
-    Serial.print("\nConnected. IP: ");
+    Serial.print("\nConnected!\nIP: ");
     Serial.print(WiFi.localIP());
+    fn();
 }
 
 void WiFiManager::reconnect() {
