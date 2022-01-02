@@ -9,8 +9,7 @@ void WiFiManager::connecting() {
 }
 
 void WiFiManager::reconnect() {
-    if(millis() - lastMillisConnection < intervalToConnect) 
-        return;
+    if(millis() - lastMillisConnection < intervalToConnect) return;
 
     Serial.print("\nReconnecting");
     WiFi.reconnect();
@@ -59,5 +58,6 @@ bool WiFiManager::isConnected() {
 }
 
 void WiFiManager::refreshConnection() {
+    if(millis() - lastMillisConnection < intervalToConnect) return;
     if(!WiFiManager::isConnected()) WiFiManager::reconnect();
 }
