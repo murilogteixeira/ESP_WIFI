@@ -48,7 +48,7 @@ void WiFiManager::connectStation(char *ssid, char *password, std::function<void 
         }
     }
 
-    Serial.print("\nConnected!\nIP: ");
+    Serial.print("\nConnected! SSID: %s, IP: %s\n", ssid, WiFi.localIP());
     Serial.print(WiFi.localIP());
     fn();
 }
