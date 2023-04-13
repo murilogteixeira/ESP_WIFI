@@ -1,0 +1,26 @@
+{
+    "name": "EspWiFi",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": "wifi, esp, 8266, esp32, esp8266",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/murilogteixeira/ESP_WIFI.git"
+    },
+    "authors":
+    [
+      {
+        "name": "Murilo Teixeira",
+        "email": "contato@murilot.com",
+        "url": "https://murilot.com",
+        "maintainer": true
+      }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/murilogteixeira/ESP_WIFI.git",
+    "dependencies": {
+    },
+    "frameworks": "*",
+    "platforms": "*"
+  }
