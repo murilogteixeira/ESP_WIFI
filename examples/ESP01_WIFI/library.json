@@ -1,0 +1,26 @@
+{
+    "name": "EspWifi",
+    "version": "1.0.0",
+    "keywords": "",
+    "description": "",
+    "license": "MIT",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/murilogteixeira/ESP_WIFI"
+    },
+    "authors":
+    [
+      {
+          "name": "Murilo Teixeira",
+          "email": "contato@murilot.com",
+          "url": "https://murilot.com"
+      }
+    ],
+    "frameworks": "arduino",
+    "platforms": [
+      "espressif8266",
+      "espressif32",
+      "nordicnrf52"
+    ]
+  }
