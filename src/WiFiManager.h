@@ -7,8 +7,10 @@ class WiFiManager {
         unsigned long lastMillisConnection;
         unsigned long lastMillisConnecting;
         unsigned long intervalToConnect = 20000;
+        unsigned long timeout = 60000;
         void connecting();
         void reconnect();
+        void setupAccessPoint();
     public:
         WiFiManager();
         bool isConnected();

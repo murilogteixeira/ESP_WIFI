@@ -42,6 +42,11 @@ void WiFiManager::connectStation(char *ssid, char *password, std::function<void 
     while(!WiFiManager::isConnected()) {
         WiFiManager::connecting();
         if(millis() - lastMillisConnection >= intervalToConnect) {
+            if(millis() - lastMillisConnection >= timeout) {
+                WiFiManager::setupAccessPoint();
+                return;
+            }
+
             Serial.println("\nConnection failed. Reconnecting...");
             WiFiManager::connectStation(ssid, password, fn);
             return;
@@ -50,6 +55,12 @@ void WiFiManager::connectStation(char *ssid, char *password, std::function<void 
 
     Serial.printf("\nConnected! SSID: %s, IP: %s\n", WiFi.SSID().c_str(), WiFi.localIP().toString().c_str());
     fn();
+}
+
+void WiFiManager::setupAccessPoint() {
+    Serial.println("Configuring AccessPoint to setup connection...");
+
+    WiFi.softAP("WifiConfig");
 }
 
 bool WiFiManager::isConnected() {
