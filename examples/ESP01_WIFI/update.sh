@@ -1,0 +1,1 @@
+curl -v -F "image=@.pio/build/esp01_1m/firmware.bin" http://ventilador.local:81/ota/update

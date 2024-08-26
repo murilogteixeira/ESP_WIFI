@@ -1,10 +1,8 @@
 {
 	"folders": [
 		{
-			"path": "examples/ESP01_WIFI"
-		},
-		{
-			"path": "."
+			"name": "IR Extender",
+			"path": "../../Projects/IR Extender"
 		}
 	],
 	"settings": {}
